@@ -59,7 +59,7 @@ vector3 = []
 columns1 = len(vector1)
 columns2 = len(vector2)
 factor = vector1[0] / vector2[0]
-
+#dasdasd
 
 for i in range(0,columns1):
     vector3.append(vector2[i] * factor)
