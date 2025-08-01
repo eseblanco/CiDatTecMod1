@@ -1,6 +1,11 @@
+
+import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+# hay que instalar python -m pip install PyQt5
+matplotlib.use('Qt5Agg')
 
 separador = "-"*40
 archivo = "/home/sblanco/Documentos/PycharmProjects/CienciaDatosTEC/semana3/Dataset_usar.csv"
@@ -39,5 +44,33 @@ print("procede a la multiplicacion para ver los pesos del vector x")
 pesos_x = np.matmul(inv_matriz_a, matriz_b)
 
 print(pesos_x)
+
+print(matriz_a[1,:])
+
+eval = matriz_a[1,:]
+pesos_x_t = np.transpose(pesos_x)
+b_estimado = np.matmul(matriz_a, pesos_x_t)
+
+punto_b = matriz_b[0:2]
+punto_b_estimado =b_estimado[0:2]
+
+print("-"*40)
+
+print(" Valor definido ",punto_b)
+print("-"*40)
+print(" Valor estimado ", punto_b_estimado)
+print("-"*40)
+print("-"*40)
+# Establece la base del origen de cada vector
+x = np.array([0.,0.] )
+y = np.array([0.,0.] )
+
+fig, ax = plt.subplots()
+
+ax.quiver(x, y, punto_b, punto_b_estimado ,color=["r","b"],angles='xy', scale_units='xy', scale=1)
+
+ax.axis([-0.5,1.,-0.5,1.])
+ax.set_aspect('equal')
+plt.show()
 
 print("fin")
