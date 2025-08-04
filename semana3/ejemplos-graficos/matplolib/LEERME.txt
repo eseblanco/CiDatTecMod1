@@ -1,0 +1,19 @@
+Arquitectura
+
+http://www.aosabook.org/en/matplotlib.html
+
+-----------------
+
+https://matplotlib.org/stable/tutorials/index.html
+
+https://matplotlib.org/stable/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py
+
+
+https://pythonspot.com/matplotlib/
+
+https://pybonacci.org/2012/05/14/manual-de-introduccion-a-matplotlib-pyplot-i/
+
+pip install matplotlib
+
+
+http://www.aosabook.org/en/matplotlib.html

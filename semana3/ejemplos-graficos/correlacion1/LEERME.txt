@@ -1,0 +1,7 @@
+https://www.delftstack.com/es/api/python-pandas/pandas-dataframe-dataframe.corr-function/
+
+https://www.aprendemachinelearning.com/analisis-exploratorio-de-datos-pandas-python/
+
+
+
+https://bioinf.comav.upv.es/courses/linux/python/pandas.html
