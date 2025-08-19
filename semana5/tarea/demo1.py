@@ -39,6 +39,9 @@ print(b_combinado['descripcion'])
 
 tiposClases = np.unique(b_combinado['descripcion'] )
 print("tipos de clases " , tiposClases)
+
+
+# calcula los auto-valores y auto-vectores
 eigenvalues, eigenvectors = np.linalg.eig( np.cov(df2_zscaled,rowvar=False))
 
 # los normaliza
