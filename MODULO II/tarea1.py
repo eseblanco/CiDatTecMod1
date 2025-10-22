@@ -46,8 +46,11 @@ print(f"Asimetría de la EDAD {emergencia_data['EDAD'].skew()} \n")
 
 
 # 2. Agrupar por 'TIPO_INCIDENTE' y calcular la edad máxima (.max() ignora NaN)
-mediana_edad_por_accidente = emergencia_data.groupby('TIPO_INCIDENTE')['EDAD'].median().sort_values(ascending=False)
-cantidad_por_accidente = emergencia_data.groupby('TIPO_INCIDENTE')['EDAD'].count().sort_values(ascending=False)
+mediana_edad_por_accidente = emergencia_data.groupby('TIPO_INCIDENTE')['EDAD'].median()
+
+#.sort_values(ascending=False)
+cantidad_por_accidente = emergencia_data.groupby('TIPO_INCIDENTE')['EDAD'].count()
+#.sort_values(ascending=False)
 # 3. Mostrar el resultado completo
 print("--- Edades Máximas por Tipo de Incidente (Ordenadas de Mayor a Menor) ---")
 print(mediana_edad_por_accidente.to_string())
@@ -55,6 +58,34 @@ print("\n--- Cantidad de Registros por Tipo de Incidente (Ordenadas de Mayor a M
 print(cantidad_por_accidente.to_string())
 
 
+#print("--- Resultados Combinados: Tipo de Incidente, Edad Mediana y Cantidad de Registros ---")
+#print(resultados_combinados.to_string(index=False))
+
+
+emergencia_data['EDAD'] = pd.to_numeric(emergencia_data['EDAD'], errors='coerce')
+
+# 2. Filtrar el DataFrame: Solo filas donde EDAD es NaN
+registros_nan_edad = emergencia_data[emergencia_data['EDAD'].isna()]
+
+# 3. Contar la frecuencia de los TIPO_INCIDENTE en este subconjunto
+conteo_nan_por_incidente = registros_nan_edad['TIPO_INCIDENTE'].value_counts()
+
+resultados_combinados = pd.DataFrame({
+    'Edad Mediana': mediana_edad_por_accidente,
+    'Cantidad de Registros': cantidad_por_accidente,
+    'valores NaN en EDAD': conteo_nan_por_incidente
+}).reset_index() 
+
+resultados_combinados_ordenados = resultados_combinados.sort_values(
+    by='Edad Mediana', 
+    ascending=False
+)
+
+
+print(resultados_combinados_ordenados.to_string(index=False))
+
+
+"""
 def get_first_mode(series):
     # Filtrar NaNs
     cleaned_series = series.dropna()
@@ -121,3 +152,4 @@ plt.show()
 
 
 
+"""
