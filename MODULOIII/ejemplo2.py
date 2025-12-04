@@ -46,11 +46,14 @@ def calcular_probabilidad_caja(muestras, caja):
 def calcular_probabilidad_posterior(muestras, fruta, caja):
     return calcular_probabilidad_fruta(muestras, fruta) * calcular_probabilidad_caja(muestras, caja)
 
+# Calcular probabilidad marginal de una manzana y una naranja
+
 def probabilidad_marginal(muestras, fruta):
     total_muestras = sum(len(muestra) for muestra in muestras)
     contador_muestra = sum(1 for muestra in muestras for _,m in muestra if m== fruta )
     return contador_muestra/total_muestras
-
+    
+# Calcular probabilidad a posteriori de que la muestra sea de la caja roja o azul
 
 if __name__ == '__main__':
     muestras = generar_muestra(10, 10)
