@@ -1,0 +1,50 @@
+Guía de Ejecución - Tarea #2 (Big Data)
+========================================
+
+Este documento provee las instrucciones necesarias para ejecutar el programa principal de procesamiento de viajes en PySpark, así como para ejecutar la suite de pruebas unitarias con Pytest.
+
+Requisitos Previos:
+-------------------
+Asegúrese de contar con las siguientes librerías instaladas en su entorno o ambiente virtual (por ejemplo, usando Conda o venv):
+- pyspark
+- pytest
+
+En caso de requerir las dependencias, instálelas utilizando pip:
+pip install pyspark pytest
+
+
+1. Ejecución de las Pruebas Unitarias
+-------------------------------------
+Las pruebas unitarias han sido diseñadas para ejecutarse utilizando directamente la librería `pytest`. Estas pruebas validan el correcto cálculo del total de viajes, total de ingresos, métricas y manejo de valores vacíos, inyectando un SparkSession local temporal que alimenta los JSON en bruto desde memoria.
+
+Para ejecutar las pruebas en la terminal, colóquese directamente en la carpeta donde descomprimió los archivos del proyecto y digite:
+
+    pytest test_programaestudiante.py
+
+En caso de que el comando `pytest` no esté registrado globalmente, puede realizar la ejecución llamándolo como módulo de Python:
+
+    python3 -m pytest test_programaestudiante.py
+
+Debería observar en pantalla que un total de 5 pruebas (5 items) han pasado exitosamente de forma verde (100%).
+
+
+2. Ejecución del Programa Principal
+-----------------------------------
+El programa principal recibe todos los archivos JSON de viajes mediante argumentos de línea de comandos. 
+Para facilitar la ejecución masiva de múltiples conductores, el llamado espera comodines del sistema como `persona*.json`.
+
+Para iniciar el Pipeline e iniciar el procesamiento en Spark, corra el siguiente comando:
+
+    spark-submit programaestudiante.py persona*.json
+
+*Nota: Alternativamente, en un ambiente local estructurado, se puede ejecutar llamándolo desde Python de forma directa aunque procesará a nivel Driver:*
+    python3 programaestudiante.py persona*.json
+
+Resultados del programa principal:
+----------------------------------
+Tras su finalización (que tomará algunos segundos), el script generará 3 directorios con sus archivos .csv coalescidos respectivos en la raíz de su carpeta de trabajo:
+- /total_viajes.csv
+- /total_ingresos.csv
+- /metricas.csv
+
+¡Listo! Con estos simples pasos ha comprobado la integridad y ha ejecutado por completo la Tarea 2 de procesamiento.
