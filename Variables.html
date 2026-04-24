@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.2.7.2 (Linux)"/>
+	<meta name="author" content="Sergio Blanco"/>
+	<meta name="created" content="2026-04-24T13:57:09.783502993"/>
+	<meta name="changedby" content="Sergio Blanco"/>
+	<meta name="changed" content="2026-04-24T14:09:07.679930783"/>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		p { line-height: 115%; margin-bottom: 0.25cm; background: transparent }
+		td p { orphans: 0; widows: 0; background: transparent }
+		th p { font-weight: bold; text-align: center; orphans: 0; widows: 0; background: transparent }
+		a:link { color: #000080; text-decoration: underline }
+		a:visited { color: #800000; text-decoration: underline }
+	</style>
+</head>
+<body lang="es-ES" link="#000080" vlink="#800000" dir="ltr"><p style="line-height: 100%; margin-bottom: 0cm">
+<br/>
+
+</p>
+<ol>
+	<li><p style="line-height: 100%; margin-bottom: 0cm">Los datos están
+	relacionados con campañas de marketing directo de una institución
+	bancaria portuguesa. 
+	</p></li>
+	<li><p style="line-height: 100%; margin-bottom: 0cm">Las campañas
+	de marketing se basaban en llamadas telefónicas. A menudo, se
+	requería más de un contacto con el mismo cliente para determinar
+	si el producto (depósito a plazo fijo) sería contratado (&quot;sí&quot;)
+	o no (&quot;no&quot;). 
+	</p></li>
+	<li><p style="line-height: 100%; margin-bottom: 0cm">Hay cuatro
+	conjuntos de datos: 1) bank-additional-full.csv con todos los
+	ejemplos (41188) y 20 entradas, ordenados por fecha (de mayo de 2008
+	a noviembre de 2010), muy similar a los datos analizados en [Moro et
+	al., 2014] 2) bank-additional.csv con el 10% de los ejemplos (4119),
+	seleccionados aleatoriamente de 1), y 20 entradas. 3) bank-full.csv
+	con todos los ejemplos y 17 entradas, ordenados por fecha (versión
+	anterior de este conjunto de datos con menos entradas). 4) bank.csv
+	con el 10 % de los ejemplos y 17 entradas, seleccionadas
+	aleatoriamente de 3 (versión anterior de este conjunto de datos con
+	menos entradas). Los conjuntos de datos más pequeños se
+	proporcionan para probar algoritmos de aprendizaje automático que
+	requieren mayor capacidad de cálculo (por ejemplo, SVM). El
+	objetivo de la clasificación es predecir si el cliente contratará
+	(sí/no) un depósito a plazo (variable y).</p></li>
+</ol>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">En la siguiente
+tabla se da una descripción de la información de las variables. 
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<table cellpadding="2" cellspacing="2">
+	<thead>
+		<tr>
+			<th style="border: none; padding: 0cm"><p>Nombre de la variable</p>
+			</th>
+			<th style="border: none; padding: 0cm"><p>Role</p>
+			</th>
+			<th style="border: none; padding: 0cm"><p>Tipo</p>
+			</th>
+			<th style="border: none; padding: 0cm"><p>Demográfico</p>
+			</th>
+			<th style="border: none; padding: 0cm"><p>Descripción</p>
+			</th>
+			<th style="border: none; padding: 0cm"><p>Unidades</p>
+			</th>
+			<th style="border: none; padding: 0cm"><p>Valores faltantes</p>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>edad</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Entero</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Edad</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>trabajo</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Categórico</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Ocupación</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Tipo de trabajo
+				(categórico: 'administrativo', 'obrero', 'emprendedor',
+				'empleada doméstica', 'gestión', 'jubilado', 'autónomo',
+				'servicios', 'estudiante', 'técnico', 'desempleado',
+				'desconocido')</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>marital</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Categórico</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Estado civil</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>estado civil
+				(categórico: 'divorciado', 'casado', 'soltero', 'desconocido';
+				nota: 'divorciado' significa divorciado o viudo)</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>educación</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Categórico</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Nivel educativo</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>(categorical:
+				'basic.4y','basic.6y','basic.9y','high.school','alfabetizado','professional.course','university.degree','unknown')</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>por defecto</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Binario</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>¿Tiene crédito en
+				mora?</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>balance</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Entero</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>saldo anual promedio</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>euros</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>alojamiento</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Binario</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>¿Tiene préstamo
+				hipotecario?</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>préstamo</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Binario</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>¿Tiene un préstamo
+				personal?</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>contacto</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Categórico</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Tipo de comunicación de
+				contacto (categórico: 'celular', 'teléfono')</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Sí</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>día_de_la_semana</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Fecha</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>último día de contacto
+				de la semana</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>mes</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Fecha</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Mes del último contacto
+				(categórico: 'ene', 'feb', 'mar', ..., 'nov', 'dic')</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>duración</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Entero</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Duración del último
+				contacto, en segundos (numérico). Nota importante: este atributo
+				afecta significativamente al resultado (por ejemplo, si
+				duración=0, entonces y='no'). Sin embargo, la duración se
+				desconoce antes de realizar una llamada. Además, una vez
+				finalizada la llamada, y es obviamente conocida. Por lo tanto,
+				esta entrada solo debe incluirse con fines comparativos y debe
+				descartarse si se pretende obtener un modelo predictivo realista.</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>campaña</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Entero</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Número de contactos
+				realizados durante esta campaña y para este cliente (numérico,
+				incluye el último contacto)</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>días p</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Entero</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Número de días
+				transcurridos desde la última vez que se contactó al cliente en
+				una campaña anterior (numérico; -1 significa que no se contactó
+				al cliente previamente).</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Sí</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>anterior</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Entero</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Número de contactos
+				realizados antes de esta campaña y para este cliente.</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>resultado de puchero</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Característica</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Categórico</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Resultado de la campaña
+				de marketing anterior (categórico: 'fracaso', 'inexistente',
+				'éxito')</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>Sí</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: none; padding: 0cm"><p>y</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Objetivo</p>
+			</td>
+			<td style="border: none; padding: 0cm"><p>Binario</p>
+			</td>
+			<td style="border: none; padding: 0cm"></td>
+			<td style="border: none; padding: 0cm"><p>¿El cliente ha
+				contratado un depósito a plazo fijo?</p>
+			</td>
+			<td colspan="2" valign="top" style="border: none; padding: 0cm"></td>
+		</tr>
+	</tbody>
+</table>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm">
+<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">Variables
+de entrada: # Datos del cliente bancario: </font></font></font>
+</p>
+<ol>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent; page-break-before: auto">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">edad
+	(numérico) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">trabajo:
+	tipo de trabajo (categórico: &quot;administrativo&quot;,
+	&quot;desconocido&quot;, &quot;desempleado&quot;, &quot;gerencia&quot;,
+	&quot;empleado doméstico&quot;, &quot;emprendedor&quot;,
+	&quot;estudiante&quot;, &quot;obrero&quot;, &quot;autónomo&quot;,
+	&quot;jubilado&quot;, &quot;técnico&quot;, &quot;servicios&quot;) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">estado
+	civil: estado civil (categórico: &quot;casado&quot;, &quot;divorciado&quot;,
+	&quot;soltero&quot;; nota: &quot;divorciado&quot; significa
+	divorciado o viudo) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">educación
+	(categórico: &quot;desconocido&quot;, &quot;secundario&quot;,
+	&quot;primario&quot;, &quot;terciario&quot;) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">impago:
+	¿tiene crédito en mora? (binario: &quot;sí&quot;, &quot;no&quot;)
+	</font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">saldo:
+	saldo anual promedio, en euros (numérico) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">vivienda:
+	¿tiene préstamo hipotecario? (binario: &quot;sí&quot;, &quot;no&quot;)
+	</font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">préstamo:
+	¿tiene préstamo personal? (binario: &quot;sí&quot;,&quot;no&quot;)
+	# relacionado con el último contacto de la campaña actual: </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">contacto:
+	tipo de comunicación del contacto (categórico:
+	&quot;desconocido&quot;,&quot;teléfono&quot;,&quot;celular&quot;) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"> <font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">día:
+	último día del mes del contacto (numérico) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"> <font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">mes:
+	último mes del año del contacto (categórico: &quot;ene&quot;,
+	&quot;feb&quot;, &quot;mar&quot;, ..., &quot;nov&quot;, &quot;dic&quot;)
+	</font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"> <font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">duración:
+	duración del último contacto, en segundos (numérico) # otros
+	atributos: </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">campaña:
+	número de contactos realizados durante esta campaña y para este
+	cliente (numérico, incluye el último contacto) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">días
+	anteriores: número de días transcurridos desde el último contacto
+	con el cliente en una campaña anterior (numérico, -1 significa que
+	el cliente no fue contactado previamente) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">anterior:
+	número de contactos realizados antes de esta campaña y para este
+	cliente (numérico) </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030"><font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">resultado:
+	resultado de la campaña de marketing anterior (categórico:
+	&quot;desconocido&quot;,&quot;otro&quot;,&quot;fracaso&quot;,&quot;éxito&quot;)
+	Variable de salida (objetivo deseado): </font></font></font>
+	</p></li>
+	<li><p style="font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2; margin-bottom: 0cm; background: transparent">
+	<font color="#303030">  <font face="ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji"><font size="4" style="font-size: 14pt">Y
+	- tiene el cliente ¿Ha contratado un depósito a plazo fijo?
+	(binario: &quot;sí&quot;,&quot;no&quot;)</font></font></font></p></li>
+</ol>
+</body>
+</html>

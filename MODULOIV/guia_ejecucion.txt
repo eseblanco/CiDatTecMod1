@@ -37,14 +37,9 @@ Para iniciar el Pipeline e iniciar el procesamiento en Spark, corra el siguiente
 
     spark-submit programaestudiante.py persona*.json
 
-*Nota: Alternativamente, en un ambiente local estructurado, se puede ejecutar llamándolo desde Python de forma directa aunque procesará a nivel Driver:*
-    python3 programaestudiante.py persona*.json
-
 Resultados del programa principal:
 ----------------------------------
 Tras su finalización (que tomará algunos segundos), el script generará 3 directorios con sus archivos .csv coalescidos respectivos en la raíz de su carpeta de trabajo:
 - /total_viajes.csv
 - /total_ingresos.csv
 - /metricas.csv
-
-¡Listo! Con estos simples pasos ha comprobado la integridad y ha ejecutado por completo la Tarea 2 de procesamiento.
